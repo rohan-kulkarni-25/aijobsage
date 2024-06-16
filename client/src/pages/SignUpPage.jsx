@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    fullName: "",
-    role: "",
-    tagline: "",
-    bio: "",
-    githubProfile: "",
-    linkedInProfile: "",
-    twitterProfile: "",
-    resume: null, // State to hold uploaded resume file
+    email: "x@y.com",
+    password: "r",
+    fullName: "r",
+    role: "r",
+    tagline: "r",
+    bio: "r",
+    githubProfile: "https://rohankulkarni.dev",
+    linkedInProfile: "https://rohankulkarni.dev",
+    twitterProfile: "https://rohankulkarni.dev",
   });
 
   // Function to handle form input changes
@@ -24,23 +24,29 @@ const SignUpPage = () => {
   };
 
   // Function to handle file upload for resume
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file.type === "application/pdf") {
-      setFormData({
-        ...formData,
-        resume: file,
-      });
-    } else {
-      alert("Please upload a PDF file.");
-    }
-  };
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Implement your signup logic here
-    console.log("Form data submitted:", formData);
+
+    try {
+      console.log("CALLED");
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/users/createUser",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // console.log("Form data submitted:", formData);
   };
 
   return (
@@ -255,24 +261,6 @@ const SignUpPage = () => {
                 placeholder="Twitter Profile"
                 value={formData.twitterProfile}
                 onChange={handleChange}
-              />
-            </div>
-
-            {/* Resume Upload */}
-            <div>
-              <label
-                htmlFor="resume"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Upload Resume (PDF only)
-              </label>
-              <input
-                id="resume"
-                name="resume"
-                type="file"
-                accept=".pdf"
-                onChange={handleFileChange}
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               />
             </div>
           </div>
