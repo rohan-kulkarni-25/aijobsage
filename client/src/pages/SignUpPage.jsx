@@ -12,8 +12,10 @@ const SignUpPage = () => {
     githubProfile: "",
     linkedInProfile: "",
     twitterProfile: "",
+    resume: null, // State to hold uploaded resume file
   });
 
+  // Function to handle form input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,9 +23,23 @@ const SignUpPage = () => {
     });
   };
 
+  // Function to handle file upload for resume
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file.type === "application/pdf") {
+      setFormData({
+        ...formData,
+        resume: file,
+      });
+    } else {
+      alert("Please upload a PDF file.");
+    }
+  };
+
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+    // Implement your signup logic here
     console.log("Form data submitted:", formData);
   };
 
@@ -54,6 +70,7 @@ const SignUpPage = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -73,6 +90,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -92,6 +111,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Full Name */}
             <div>
               <label
                 htmlFor="fullName"
@@ -111,6 +132,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Role */}
             <div>
               <label
                 htmlFor="role"
@@ -130,6 +153,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Tagline */}
             <div>
               <label
                 htmlFor="tagline"
@@ -149,6 +174,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Bio */}
             <div>
               <label
                 htmlFor="bio"
@@ -167,6 +194,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* GitHub Profile */}
             <div>
               <label
                 htmlFor="githubProfile"
@@ -186,6 +215,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* LinkedIn Profile */}
             <div>
               <label
                 htmlFor="linkedInProfile"
@@ -205,6 +236,8 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Twitter Profile */}
             <div>
               <label
                 htmlFor="twitterProfile"
@@ -224,11 +257,32 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Resume Upload */}
+            <div>
+              <label
+                htmlFor="resume"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Upload Resume (PDF only)
+              </label>
+              <input
+                id="resume"
+                name="resume"
+                type="file"
+                accept=".pdf"
+                onChange={handleFileChange}
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              />
+            </div>
           </div>
+
+          {/* Submit Button */}
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg
+              indigo-600 bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Sign Up
             </button>
