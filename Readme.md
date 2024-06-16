@@ -20,11 +20,9 @@ AIJobSaga is a comprehensive platform aimed at AI professionals, providing job l
 
 ## Features
 
-- **Job Listings**: Browse and apply for AI-related jobs posted by companies.
-- **Workspace Management**: Organize projects, collaborate with teams, and manage tasks efficiently.
-- **Community Forum**: Engage with other AI professionals, share insights, and seek advice.
-- **Profile Management**: Update personal information, skills, and preferences easily.
-- **Integration with AI Tools**: Seamless integration with AI development tools and platforms.
+- **Personalized Messages**: Write standout job applications with AI-powered message creation.
+- **AI-Generated Insights**: Get data-driven recommendations to optimize your resume & cover letter.
+- **Job Fit Score**: See how well your skills match specific job postings.
 
 ## Getting Started
 
