@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import ContentSection from "./ContentSection"; // Import your ContentSection component here
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const JobDescriptionSection = () => {
+const JobDescriptionSection = ({ GenerateContent }) => {
   const [jobDescription, setJobDescription] = useState("");
-  const [generateChecked, setGenerateChecked] = useState(false);
-  const [showContent, setShowContent] = useState(false); // State to manage visibility of ContentSection
 
   const handleJobDescriptionChange = (e) => {
     setJobDescription(e.target.value);
   };
 
-  const handleGenerateToggle = () => {
-    setGenerateChecked(!generateChecked);
+  const handleGenerateContent = () => {
+    GenerateContent(jobDescription);
   };
 
-  const handleGenerateContent = () => {
-    setShowContent(true); // Show ContentSection when Generate Content is clicked
-  };
+  useEffect(() => {
+    toast("HELLO");
+  }, []);
 
   return (
     <div className="mb-8">
@@ -46,14 +44,6 @@ const JobDescriptionSection = () => {
           Generate Content
         </button>
       </div>
-
-      {/* Conditionally render ContentSection */}
-      {showContent && (
-        <ContentSection
-          jobDescription={jobDescription}
-          generateChecked={generateChecked}
-        />
-      )}
     </div>
   );
 };

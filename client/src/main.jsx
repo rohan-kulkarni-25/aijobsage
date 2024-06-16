@@ -9,6 +9,7 @@ import OnboardingPage from "./pages/OnboardingPage";
 import Dashboard from "./layout/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import Creator from "./pages/Creator";
+
 import WorkSpaceComponent from "./components/WorkSpaceComponent";
 
 const router = createBrowserRouter([

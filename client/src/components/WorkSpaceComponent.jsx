@@ -1,42 +1,58 @@
 import React, { useState } from "react";
 import JobDescriptionSection from "./JobDescriptionSection";
 import ContentSection from "./ContentSection";
+import axios from "axios";
 
 const Workspace = () => {
   const [jobDescription, setJobDescription] = useState("");
-  const [generateChecked, setGenerateChecked] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState({});
 
   const handleJobDescriptionChange = (value) => {
     setJobDescription(value);
   };
 
-  const handleGenerateToggle = () => {
-    setGenerateChecked(!generateChecked);
-  };
-
-  const handleGenerateContent = () => {
-    setShowContent(true);
+  const handleGenerateContent = async (jobDescription) => {
+    try {
+      setLoading(true);
+      const response = await axios({
+        method: "POST",
+        data: {
+          jobDescription,
+          messageFor: "founder",
+        },
+        url: "http://localhost:8080/api/v1/users/generate",
+      });
+      console.log(response);
+      setShowContent(true);
+      let data = response.data.data;
+      setContent(data);
+      setLoading(false);
+      console.log(content.summary);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
     <div className="flex flex-row gap-8">
       {/* Left Column - Job Description Section */}
-      <div className="w-1/2">
-        <JobDescriptionSection
-          jobDescription={jobDescription}
-          setJobDescription={handleJobDescriptionChange}
-          generateChecked={generateChecked}
-          handleGenerateToggle={handleGenerateToggle}
-          handleGenerateContent={handleGenerateContent}
-        />
+      <div className="w-1/2 flex-1">
+        <JobDescriptionSection GenerateContent={handleGenerateContent} />
       </div>
-      <div className=" w-1/2">
-        <ContentSection
-          jobDescription={jobDescription}
-          generateChecked={generateChecked}
-        />
-      </div>
+      {showContent ? (
+        <div className=" w-1/2">
+          <ContentSection
+            content={content}
+            fitPercentage={content.fitPercentage}
+            summary={content.summary}
+            linkedInMessage={content.linkedInMessage}
+            twitterMessage={content.twitterMessage}
+            coldEmail={content.coldEmail}
+          />
+        </div>
+      ) : null}
       {/* Right Column - Content Section */}
 
       {/* {showContent && (

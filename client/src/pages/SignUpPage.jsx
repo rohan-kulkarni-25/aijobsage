@@ -5,7 +5,7 @@ import axios from "axios";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
     email: "x@y.com",
-    password: "r",
+    password: "rohan@25",
     fullName: "r",
     role: "r",
     tagline: "r",
@@ -31,16 +31,11 @@ const SignUpPage = () => {
     // Implement your signup logic here
 
     try {
-      console.log("CALLED");
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/users/createUser",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios({
+        method: "post",
+        url: "http://localhost:8080/api/v1/users/createUser",
+        data: { ...formData },
+      });
       console.log(response);
     } catch (error) {
       console.log(error);

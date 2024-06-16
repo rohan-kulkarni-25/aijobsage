@@ -1,40 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { RiFileCopyLine } from "react-icons/ri";
 
-const ContentSection = ({ jobDescription }) => {
-  const [summary, setSummary] = useState("");
-  const [linkedInMessage, setLinkedInMessage] = useState("");
-  const [twitterMessage, setTwitterMessage] = useState("");
-  const [coldEmail, setColdEmail] = useState("");
-  const [resumeSuggestions, setResumeSuggestions] = useState("");
-  const [fitPercentage, setFitPercentage] = useState(0);
-
-  const summaryRef = useRef(null);
-  const linkedInRef = useRef(null);
-  const twitterRef = useRef(null);
-  const coldEmailRef = useRef(null);
-
-  // Function to generate dummy content (replace with actual logic)
-  const generateContent = () => {
-    // Generate dummy content with at least 200 characters
-    const loremIpsum =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-    setSummary(loremIpsum.substring(0, 300)); // Limit summary to 300 characters
-    setLinkedInMessage(loremIpsum.substring(0, 200)); // Limit LinkedIn message to 200 characters
-    setTwitterMessage(loremIpsum.substring(0, 200)); // Limit Twitter message to 200 characters
-    setColdEmail(loremIpsum.substring(0, 500)); // Limit cold email to 500 characters
-
-    // Generate dummy resume suggestions
-    const suggestions =
-      "Your resume could benefit from clearer formatting and more specific achievements. Consider adding metrics and quantifiable results to highlight your contributions.";
-
-    setResumeSuggestions(suggestions);
-
-    // Generate dummy fit percentage
-    const percentage = Math.floor(Math.random() * 100); // Random fit percentage between 0 and 100
-    setFitPercentage(percentage);
-  };
+const ContentSection = ({ content }) => {
+  console.log("content.", content.summary);
+  const summaryRef = useRef(content.summary);
+  const linkedInRef = useRef(content.linkedInMessage);
+  const twitterRef = useRef(content.twitterMessage);
+  const coldEmailRef = useRef(content.coldEmail);
 
   // Copy text to clipboard
   const copyToClipboard = (ref) => {
@@ -48,11 +20,6 @@ const ContentSection = ({ jobDescription }) => {
     selection.removeAllRanges();
   };
 
-  // Generate content initially when component mounts
-  useEffect(() => {
-    generateContent();
-  }, []);
-
   return (
     <div className="mt-8 space-y-6 ">
       {/* Fit Percentage */}
@@ -62,7 +29,7 @@ const ContentSection = ({ jobDescription }) => {
         </h2>
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center h-24 w-24 rounded-full bg-indigo-500 text-white text-4xl font-bold">
-            {fitPercentage}%
+            {content.fit_percentage}
           </div>
         </div>
       </div>
@@ -70,10 +37,10 @@ const ContentSection = ({ jobDescription }) => {
       {/* Resume Suggestions */}
       <div className="bg-white rounded-lg shadow-md p-4">
         <h2 className="text-lg font-medium text-gray-800 mb-2">
-          Resume Suggestions
+          Why you are fit for this role ?
         </h2>
         <div className="overflow-auto p-2 rounded-md shadow-sm">
-          <p className="text-sm text-gray-700">{resumeSuggestions}</p>
+          <p className="text-sm text-gray-700">{content.reason_fit}</p>
         </div>
       </div>
 
@@ -92,7 +59,7 @@ const ContentSection = ({ jobDescription }) => {
           ref={summaryRef}
           className="overflow-auto p-4 rounded-md shadow-sm bg-gray-50"
         >
-          {summary}
+          {content.summary}
         </div>
       </div>
 
@@ -113,7 +80,7 @@ const ContentSection = ({ jobDescription }) => {
           ref={linkedInRef}
           className="overflow-auto p-4 rounded-md shadow-sm bg-gray-50"
         >
-          {linkedInMessage}
+          {content.linkedIn_Message}
         </div>
       </div>
 
@@ -132,7 +99,7 @@ const ContentSection = ({ jobDescription }) => {
           ref={twitterRef}
           className="overflow-auto p-4 rounded-md shadow-sm bg-gray-50"
         >
-          {twitterMessage}
+          {content.twitter_Message}
         </div>
       </div>
 
@@ -151,7 +118,7 @@ const ContentSection = ({ jobDescription }) => {
           ref={coldEmailRef}
           className="overflow-auto p-4 rounded-md shadow-sm bg-gray-50"
         >
-          {coldEmail}
+          {content.cold_email}
         </div>
       </div>
     </div>

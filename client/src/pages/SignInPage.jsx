@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignInPage = () => {
   const [formData, setFormData] = useState({
@@ -14,10 +15,19 @@ const SignInPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log("Form data submitted:", formData);
+    try {
+      const response = await axios({
+        method: "post",
+        url: "http://localhost:8080/api/v1/users/login",
+        data: { ...formData },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
