@@ -1,3 +1,5 @@
+![alt text](image.png)
+
 # AIJobSaga
 
 AIJobSaga is a platform designed to connect AI professionals with job opportunities and resources in the field of Artificial Intelligence.
