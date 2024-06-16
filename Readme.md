@@ -2,7 +2,7 @@
 
 # AIJobSaga
 
-Craft personalized applications & gain AI-powered insights to land your dream job.
+Craft personalized applications & gain AI-powered insights to land your dream job. Elevate your job application strategy with personalized approaches that highlight your skills and experiences. Leverage AI-powered insights to gain a deeper understanding of employer preferences and market trends, ensuring each application is finely tuned for success. Step confidently towards your dream job with precision and clarity in every interaction.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ Craft personalized applications & gain AI-powered insights to land your dream jo
 
 ## Introduction
 
-AIJobSaga is a comprehensive platform aimed at AI professionals, providing job listings, workspace management, and community engagement features in one place. It streamlines the job search process and enhances professional networking within the AI industry.
+Craft personalized applications & gain AI-powered insights to land your dream job.
 
 ## Features
 
