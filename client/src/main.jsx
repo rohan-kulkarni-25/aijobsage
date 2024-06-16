@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Creator from "./pages/Creator";
 
 import WorkSpaceComponent from "./components/WorkSpaceComponent";
+import { NextUIProvider } from "@nextui-org/react";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <NextUIProvider>
+      <RouterProvider router={router} />
+    </NextUIProvider>
   </Provider>
 );

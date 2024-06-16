@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "../components/NavBar";
+import NavbarComponent from "../components/NavBar";
 import { Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Navbar />
+      <NavbarComponent />
       <div className="flex-grow flex">
         <div className="flex-grow p-6 overflow-y-auto">
           <Outlet />
