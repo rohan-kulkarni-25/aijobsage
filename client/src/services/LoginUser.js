@@ -11,6 +11,7 @@ const loginUser = async (formData) => {
     return response;
   } catch (error) {
     console.log(error, "IN LOGIN USER SERVICE");
+    return error;
   }
 };
 

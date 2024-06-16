@@ -5,7 +5,9 @@ import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../store/Slices/userSlice";
 import loginWithToken from "../services/LoginWithToken";
+import { Toaster } from "sonner";
 import SpinnerComponent from "../components/Spinner";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -53,9 +55,14 @@ const Dashboard = () => {
     handleloginWithToken(accessToken);
   }, [user.accessToken]);
 
+  useEffect(() => {
+    toast("JEllp");
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {loader.isloading ? <SpinnerComponent /> : null}
+
       <NavbarComponent />
       <div className="flex-grow flex">
         <div className="flex-grow p-6 overflow-y-auto">

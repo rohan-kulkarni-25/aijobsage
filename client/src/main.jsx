@@ -9,7 +9,7 @@ import OnboardingPage from "./pages/OnboardingPage";
 import Dashboard from "./layout/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import Creator from "./pages/Creator";
-
+import { Toaster } from "sonner";
 import WorkSpaceComponent from "./components/WorkSpaceComponent";
 import { NextUIProvider } from "@nextui-org/react";
 import { Provider } from "react-redux";
@@ -53,5 +53,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <NextUIProvider>
       <RouterProvider router={router} />
     </NextUIProvider>
+    <Toaster position="top-right" />
   </Provider>
 );

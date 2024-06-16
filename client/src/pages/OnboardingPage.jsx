@@ -1,54 +1,48 @@
-import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import SpinnerComponent from "../components/Spinner";
 
 const OnboardingPage = () => {
-  const loader = useSelector((state) => state.loader);
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full space-y-8">
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900">
-            Welcome to AIJobSage
-          </h2>
-          <p className="mt-4 text-gray-600">
+        <div className="text-center text-white">
+          <h2 className="text-5xl font-extrabold">Welcome to AIJobSage</h2>
+          <p className="mt-4 text-lg">
             Your personalized AI job assistant. We prioritize your data privacy
             and ensure your information is secure.
           </p>
         </div>
         <div className="flex flex-col lg:flex-row lg:space-x-6">
-          <div className="flex-1 bg-white shadow sm:rounded-lg p-6 mb-6 lg:mb-0">
-            <h3 className="text-xl font-medium text-gray-900">Sign In</h3>
+          <div className="flex-1 bg-white shadow-lg rounded-lg p-6 mb-6 lg:mb-0">
+            <h3 className="text-2xl font-semibold text-gray-900">Sign In</h3>
             <p className="mt-2 text-sm text-gray-600">
               Already have an account? Sign in to continue your journey with
               AIJobSage.
             </p>
-            <div className="mt-4">
+            <div className="mt-6">
               <Link to="/sign-in">
-                <button className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button className="w-full flex justify-center py-3 px-6 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
                   Sign In
                 </button>
               </Link>
             </div>
           </div>
-          <div className="flex-1 bg-white shadow sm:rounded-lg p-6">
-            <h3 className="text-xl font-medium text-gray-900">Sign Up</h3>
+          <div className="flex-1 bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-2xl font-semibold text-gray-900">Sign Up</h3>
             <p className="mt-2 text-sm text-gray-600">
               New to AIJobSage? Create an account to start leveraging our
               AI-powered job search assistance.
             </p>
-            <div className="mt-4">
+            <div className="mt-6">
               <Link to="/sign-up">
-                <button className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button className="w-full flex justify-center py-3 px-6 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
                   Sign Up
                 </button>
               </Link>
             </div>
           </div>
         </div>
-        <div className="bg-white shadow sm:rounded-lg p-6 mt-8">
-          <h3 className="text-xl font-medium text-gray-900">
+        <div className="bg-white shadow-lg rounded-lg p-6 mt-8">
+          <h3 className="text-2xl font-semibold text-gray-900">
             Your Data Privacy
           </h3>
           <p className="mt-2 text-sm text-gray-600">

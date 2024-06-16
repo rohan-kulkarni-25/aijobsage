@@ -13,7 +13,7 @@ const loginWithToken = async (token) => {
     console.log(response);
     return response;
   } catch (error) {
-    console.log(error, "ERROR AT LOGINWITHTOKEN");
+    return error;
   }
 };
 
