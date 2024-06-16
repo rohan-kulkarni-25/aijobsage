@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import loginUser from "../services/LoginUser";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../store/Slices/userSlice";
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "rohank2502@gmail.com",
+    password: "rohan@25",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -15,18 +22,30 @@ const SignInPage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const logUserIn = async (e) => {
     e.preventDefault();
-    // Handle form submission
+    setLoading(true);
+
     try {
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:8080/api/v1/users/login",
-        data: { ...formData },
-      });
-      console.log(response);
+      // Make API call to authenticate user
+      const response = await loginUser(formData);
+
+      // SAVE COOKIES
+      Cookies.set("accessToken", response.data.data.accessToken);
+      Cookies.set("refreshToken", response.data.data.refreshToken);
+
+      if (response.status == 200) {
+        setLoading(false);
+        dispatch(updateUser(response.data.data));
+        navigate("/user/workspace");
+      } else {
+        setLoading(false);
+        alert("Invalid Username or Password");
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      alert("Something went wrong !");
+      setLoading(false);
     }
   };
 
@@ -55,7 +74,7 @@ const SignInPage = () => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-6" onSubmit={logUserIn}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
               <label

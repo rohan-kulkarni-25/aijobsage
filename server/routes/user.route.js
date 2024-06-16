@@ -1,11 +1,17 @@
 import { Router } from "express";
-import { createUser, loginUser } from "../controllers/user.controller.js";
+import {
+  createUser,
+  getCurrentUser,
+  loginUser,
+} from "../controllers/user.controller.js";
 import { generateContent } from "../controllers/user.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
 router.route("/createUser").post(createUser);
-router.route("/generate").post(generateContent);
+router.route("/generate").post(verifyJWT, generateContent);
 router.route("/login").post(loginUser);
+router.route("/loginwithtoken").post(verifyJWT, getCurrentUser);
 
 export default router;

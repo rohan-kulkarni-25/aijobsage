@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import loginUser from "../services/LoginUser";
+import { updateUser } from "../store/Slices/userSlice";
+import Cookies from "js-cookie";
+import signupUser from "../services/SignupUser";
 
 const SignUpPage = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "x@y.com",
     password: "rohan@25",
@@ -31,17 +39,42 @@ const SignUpPage = () => {
     // Implement your signup logic here
 
     try {
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:8080/api/v1/users/createUser",
-        data: { ...formData },
-      });
+      const response = await signupUser(formData);
+      if (response.status == 201) {
+        logUserIn(formData);
+      }
       console.log(response);
     } catch (error) {
       console.log(error);
     }
 
     // console.log("Form data submitted:", formData);
+  };
+
+  const logUserIn = async (formData) => {
+    setLoading(true);
+
+    try {
+      // Make API call to authenticate user
+      const response = await loginUser(formData);
+
+      // SAVE COOKIES
+      Cookies.set("accessToken", response.data.data.accessToken);
+      Cookies.set("refreshToken", response.data.data.refreshToken);
+
+      if (response.status == 200) {
+        setLoading(false);
+        dispatch(updateUser(response.data.data));
+        navigate("/user/workspace");
+      } else {
+        setLoading(false);
+        alert("Invalid Username or Password");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong !");
+      setLoading(false);
+    }
   };
 
   return (

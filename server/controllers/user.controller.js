@@ -96,6 +96,12 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(new APIResponse(200, req.user, "User fetched successfully"));
+});
+
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -155,7 +161,9 @@ const generateContent = asyncHandler(async (req, res) => {
 
     // openai.apiKey = process.env.OPENAI_KEY;
 
-    const profile = await User.findOne({ email: "rohank2502@gmail.com" });
+    // const profile = await User.findOne({ email: "rohank2502@gmail.com" });
+    // console.log(profile);
+    const profile = req.user;
     console.log(profile);
     const prompt = `
 
@@ -216,4 +224,4 @@ const generateContent = asyncHandler(async (req, res) => {
   }
 });
 
-export { createUser, generateContent, loginUser };
+export { createUser, generateContent, loginUser, getCurrentUser };

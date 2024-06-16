@@ -2,8 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoPersonOutline, IoLogOutOutline } from "react-icons/io5"; // Example icons from react-icons
 import { Menu } from "@headlessui/react";
+import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
+    navigate("/onboarding");
+  };
+
   return (
     <nav className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -21,7 +34,10 @@ const Navbar = () => {
           {/* Logo (centered on larger screens) */}
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
-              <Link to="/" className="text-2xl font-bold text-gray-900">
+              <Link
+                to="/user/workspace"
+                className="text-2xl font-bold text-gray-900"
+              >
                 AIJobSage
               </Link>
             </div>
@@ -43,7 +59,7 @@ const Navbar = () => {
               </Link>
               <button
                 className="text-sm text-gray-700 hover:bg-gray-200 rounded px-3 py-2 ml-2"
-                onClick={() => console.log("Sign out clicked")}
+                onClick={handleSignOut}
               >
                 <IoLogOutOutline className="inline-block h-6 w-6 mr-1" />
                 Sign Out
@@ -52,35 +68,13 @@ const Navbar = () => {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <Menu as="div" className="relative">
                 <div>
-                  <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    <span className="sr-only">Open user menu</span>
-                    <IoPersonOutline className="block h-8 w-8 rounded-full" />
-                  </Menu.Button>
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src={`${user.user.githubProfile}.png`}
+                    alt="Github Profile"
+                  />
+                  {/* <IoPersonOutline className="block h-8 w-8 rounded-full" /> */}
                 </div>
-                {/* Dropdown menu (if needed) */}
-                {/* <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        to="/profile"
-                        className={`block px-4 py-2 text-sm text-gray-700 ${active ? 'bg-gray-100' : ''}`}
-                      >
-                        Profile
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`block px-4 py-2 text-sm text-gray-700 w-full text-left ${active ? 'bg-gray-100' : ''}`}
-                        onClick={() => console.log('Sign out clicked')}
-                      >
-                        <IoLogOutOutline className="mr-2 inline-block h-5 w-5 text-gray-500" />
-                        Sign Out
-                      </button>
-                    )}
-                  </Menu.Item>
-                </Menu.Items> */}
               </Menu>
             </div>
           </div>

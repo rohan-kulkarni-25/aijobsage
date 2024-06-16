@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import JobDescriptionSection from "./JobDescriptionSection";
 import ContentSection from "./ContentSection";
 import axios from "axios";
+import generateContent from "../services/GenerateContent";
 
 const Workspace = () => {
   const [jobDescription, setJobDescription] = useState("");
@@ -16,14 +17,11 @@ const Workspace = () => {
   const handleGenerateContent = async (jobDescription) => {
     try {
       setLoading(true);
-      const response = await axios({
-        method: "POST",
-        data: {
-          jobDescription,
-          messageFor: "founder",
-        },
-        url: "http://localhost:8080/api/v1/users/generate",
-      });
+      let dataObject = {
+        jobDescription,
+        messageFor: "Founder",
+      };
+      const response = await generateContent(dataObject);
       console.log(response);
       setShowContent(true);
       let data = response.data.data;
