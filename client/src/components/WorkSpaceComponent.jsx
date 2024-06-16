@@ -3,12 +3,16 @@ import JobDescriptionSection from "./JobDescriptionSection";
 import ContentSection from "./ContentSection";
 import axios from "axios";
 import generateContent from "../services/GenerateContent";
+import { useDispatch } from "react-redux";
+import { updateLoader } from "../store/Slices/loaderSlice";
 
 const Workspace = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [showContent, setShowContent] = useState(false);
-  const [loading, setLoading] = useState(false);
+
   const [content, setContent] = useState({});
+
+  const dispatch = useDispatch();
 
   const handleJobDescriptionChange = (value) => {
     setJobDescription(value);
@@ -16,18 +20,16 @@ const Workspace = () => {
 
   const handleGenerateContent = async (jobDescription) => {
     try {
-      setLoading(true);
+      dispatch(updateLoader({ isloading: true }));
       let dataObject = {
         jobDescription,
         messageFor: "Founder",
       };
       const response = await generateContent(dataObject);
-      console.log(response);
       setShowContent(true);
       let data = response.data.data;
       setContent(data);
-      setLoading(false);
-      console.log(content.summary);
+      dispatch(updateLoader({ isloading: false }));
     } catch (error) {
       alert(error);
     }

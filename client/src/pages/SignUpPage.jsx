@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import loginUser from "../services/LoginUser";
 import { updateUser } from "../store/Slices/userSlice";
 import Cookies from "js-cookie";
 import signupUser from "../services/SignupUser";
+import { updateLoader } from "../store/Slices/loaderSlice";
 
 const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
+  const loader = useSelector((state) => state.loader);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -52,7 +54,7 @@ const SignUpPage = () => {
   };
 
   const logUserIn = async (formData) => {
-    setLoading(true);
+    dispatch(updateLoader({ isloading: true }));
 
     try {
       // Make API call to authenticate user
@@ -63,17 +65,17 @@ const SignUpPage = () => {
       Cookies.set("refreshToken", response.data.data.refreshToken);
 
       if (response.status == 200) {
-        setLoading(false);
+        dispatch(updateLoader({ isloading: false }));
         dispatch(updateUser(response.data.data));
         navigate("/user/workspace");
       } else {
-        setLoading(false);
+        dispatch(updateLoader({ isloading: false }));
         alert("Invalid Username or Password");
       }
     } catch (error) {
       console.error(error);
       alert("Something went wrong !");
-      setLoading(false);
+      dispatch(updateLoader({ isloading: false }));
     }
   };
 
@@ -305,6 +307,7 @@ const SignUpPage = () => {
           </div>
         </form>
       </div>
+      {loader.isloading ? <SpinnerComponent /> : null}
     </div>
   );
 };

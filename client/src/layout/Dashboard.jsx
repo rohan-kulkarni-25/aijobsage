@@ -5,11 +5,13 @@ import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../store/Slices/userSlice";
 import loginWithToken from "../services/LoginWithToken";
+import SpinnerComponent from "../components/Spinner";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const loader = useSelector((state) => state.loader);
 
   const handleloginWithToken = async (accessToken) => {
     // navigate("/loading");
@@ -53,6 +55,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
+      {loader.isloading ? <SpinnerComponent /> : null}
       <NavbarComponent />
       <div className="flex-grow flex">
         <div className="flex-grow p-6 overflow-y-auto">

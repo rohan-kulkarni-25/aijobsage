@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import SpinnerComponent from "../components/Spinner";
 
 const OnboardingPage = () => {
+  const loader = useSelector((state) => state.loader);
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full space-y-8">
