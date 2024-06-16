@@ -2,7 +2,7 @@
 
 # AIJobSaga
 
-AIJobSaga is a platform designed to connect AI professionals with job opportunities and resources in the field of Artificial Intelligence.
+Craft personalized applications & gain AI-powered insights to land your dream job.
 
 ## Table of Contents
 
