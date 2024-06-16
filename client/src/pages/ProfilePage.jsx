@@ -1,16 +1,22 @@
+import { Avatar, useSelect } from "@nextui-org/react";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
+import updateProfile from "../services/UpdateProfile";
 
 const ProfilePage = () => {
   // Initial state with example data
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
   const [formData, setFormData] = useState({
-    email: "user@example.com",
-    fullName: "John Doe",
-    role: "Software Developer",
-    tagline: "Passionate about coding!",
-    bio: "Experienced developer with a passion for building great software.",
-    github: "https://github.com/johndoe",
-    linkedin: "https://linkedin.com/in/johndoe",
-    twitter: "https://twitter.com/johndoe",
+    email: user.email,
+    fullName: user.name,
+    role: user.role,
+    tagline: user.tagline,
+    bio: user.bio,
+    github: user.githubProfile,
+    linkedin: user.linkedInProfile,
+    twitter: user.twitterProfile,
   });
 
   // Handle form input changes
@@ -23,19 +29,26 @@ const ProfilePage = () => {
   };
 
   // Handle form submission (example)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Here you would handle the form submission, e.g., send data to backend
+
+    try {
+      let response = await updateProfile(formData);
+      toast(response.response.data.message);
+    } catch (error) {
+      toast(error.response.message);
+    }
     console.log("Form submitted with data:", formData);
     // Replace with actual API call to update user profile
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+      <div className="w-2/3 bg-white shadow-md rounded-lg p-8">
         <div className="flex items-center justify-center mb-6">
           <div className="h-12 w-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-500 text-xl font-semibold">
-            JD
+            <Avatar src={`${user.githubProfile}.png`} />
           </div>
           <div className="ml-4">
             <h2 className="text-xl font-semibold text-gray-800">

@@ -224,4 +224,43 @@ const generateContent = asyncHandler(async (req, res) => {
   }
 });
 
-export { createUser, generateContent, loginUser, getCurrentUser };
+const updateProfile = asyncHandler(async (req, res) => {
+  try {
+    const email = req.user.email; // Assuming email is available in req.user
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    console.log(req.body);
+    // Merge existing user document with updated fields from req.body
+    const updatedUser = {
+      ...user.toObject(), // Convert Mongoose document to plain JavaScript object
+      ...req.body,
+      name: req.body.fullName,
+    };
+
+    // Update user object with updated fields
+    user.set(updatedUser);
+
+    // Save updated user object
+    await user.save();
+    let newUser = await User.findOne({ email });
+    console.log(user.name);
+    console.log(newUser.name);
+
+    return res
+      .status(200)
+      .json({ message: "User updated successfully", newUser });
+  } catch (error) {
+    return new APIError(404, "Something went wrong while updating profile");
+  }
+});
+
+export {
+  createUser,
+  generateContent,
+  loginUser,
+  getCurrentUser,
+  updateProfile,
+};
