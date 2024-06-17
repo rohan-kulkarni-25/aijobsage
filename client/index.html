@@ -2,15 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-    </style>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://res.cloudinary.com/dw58xmffd/image/upload/v1718582373/JOBSAGA_1_s9vtg7.png"
+    />
+    <!-- Page Title and Description -->
+    <title>AiJobSaga</title>
+    <meta
+      name="description"
+      content="Craft personalized applications & gain AI-powered insights to land your dream job with AIJobSaga."
+    />
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <!-- Preload Main JS -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
+    <!-- CSS Critical Path (if any) -->
+    <!-- <link rel="stylesheet" href="/path/to/your/critical.css"> -->
   </head>
   <body>
-    <div class="font-poppins" id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root"></div>
+
+    <!-- Load Main JS asynchronously -->
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>
