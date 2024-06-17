@@ -257,10 +257,26 @@ const updateProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const getLatestUsers = asyncHandler(async (req, res) => {
+  try {
+    const latestUsers = await User.find({})
+      .sort({ createdAt: -1 }) // Sort by createdAt in descending order
+      .limit(5) // Limit to 5 users
+      .select("githubProfile"); // Select only the githubProfile field
+
+    return res
+      .status(200)
+      .json(new APIResponse(200, latestUsers, "LatestUsers"));
+  } catch (error) {
+    return new APIError(404, "Something went wrong");
+  }
+});
+
 export {
   createUser,
   generateContent,
   loginUser,
   getCurrentUser,
   updateProfile,
+  getLatestUsers,
 };
