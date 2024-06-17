@@ -5,7 +5,7 @@ const SpinnerComponent = () => {
   return (
     <div className="absolute h-screen w-screen top-0 bg-white flex  flex-col items-center justify-center gap-8 opacity-80">
       <Spinner color="primary" />
-      <p className="tracking-widest">
+      <p className="tracking-widest sm:w-full text-center">
         it's loading... why don't you hire{" "}
         <a
           className="font-bold text-voilet-400 underline"

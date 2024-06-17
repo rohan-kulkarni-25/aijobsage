@@ -6,12 +6,12 @@ const OnboardingPage = () => {
       <div className="max-w-4xl w-full space-y-8">
         <div className="text-center text-white">
           <h2 className="text-5xl font-extrabold">Welcome to AIJobSage</h2>
-          <p className="mt-4 text-lg">
+          <p className="mt-4 text-lg sm:text-xs">
             Your personalized AI job assistant. We prioritize your data privacy
             and ensure your information is secure.
           </p>
         </div>
-        <div className="flex flex-col lg:flex-row lg:space-x-6">
+        <div className="flex flex-rows sm:flex-col gap-4">
           <div className="flex-1 bg-white shadow-lg rounded-lg p-6 mb-6 lg:mb-0">
             <h3 className="text-2xl font-semibold text-gray-900">Sign In</h3>
             <p className="mt-2 text-sm text-gray-600">
@@ -26,7 +26,7 @@ const OnboardingPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex-1 bg-white shadow-lg rounded-lg p-6">
+          <div className="flex-1 bg-white shadow-lg  rounded-lg p-6">
             <h3 className="text-2xl font-semibold text-gray-900">Sign Up</h3>
             <p className="mt-2 text-sm text-gray-600">
               New to AIJobSage? Create an account to start leveraging our

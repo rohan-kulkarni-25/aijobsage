@@ -6,7 +6,7 @@ import Features from "../components/HomePage/Features";
 
 const HomePage = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-violet-600  min-h-screen overy">
+    <div className="bg-gradient-to-r from-blue-600 to-violet-600  min-h-screen overy sm:px-8 sm:flex sm:flex-col sm:justify-center sm:items-center">
       {/* Hero Section */}
       <HeroComponent />
       {/* Features Section */}
@@ -14,12 +14,12 @@ const HomePage = () => {
       {/* Testimonials Section */}
 
       {/* Call to Action Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-violet-600  py-16 px-4 sm:px-6 lg:px-8 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-violet-600  py-16  px-4 sm:px-0 lg:px-8 text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4 sm:text-4xl">
             Ready to Launch Your Dream Career?
           </h2>
-          <p className="text-lg mb-8">
+          <p className="text-lg mb-8 sm:text-xs">
             Join thousands of successful job seekers using AIJobSage.
           </p>
           <Link to={"/sign-up"}>
@@ -31,7 +31,7 @@ const HomePage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 py-8 px-4 sm:px-6 lg:px-8 text-white text-center">
+      {/* <footer className="bg-gray-800 py-8 px-4 sm:px-6 lg:px-8 text-white text-center">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <p>&copy; 2024 AIJobSage. All rights reserved.</p>
           <div className="flex space-x-4">
@@ -46,7 +46,7 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

@@ -72,7 +72,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 items-center gap-4 py-8 px-4 sm:px-6 lg:px-8 flex flex-col justify-start">
+    <div className="h-screen sm:h-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 items-center gap-4 py-8 px-4 sm:px-6 lg:px-8 flex flex-col justify-start">
       <p className="mt-2 text-sm text-gray-600 ">
         <Link
           to="/"
@@ -97,7 +97,7 @@ const SignUpPage = () => {
           </p>
         </div>
         <form className=" mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4 grid grid-cols-2 gap-4">
+          <div className="rounded-md shadow-sm space-y-4 grid grid-cols-2 gap-4 sm:grid-cols-1">
             <div>
               <label
                 htmlFor="email"

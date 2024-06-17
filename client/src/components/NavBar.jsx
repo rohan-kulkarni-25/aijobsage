@@ -31,8 +31,8 @@ const NavbarComponent = () => {
 
   return (
     <Navbar className="bg-white shadow p-2 flex flex-row items-center ">
-      <div className="flex flex-row gap-8">
-        <Chip color="warning" variant="dot" className="animate-pulse">
+      <div className="flex flex-row gap-8 sm:gap-4">
+        <Chip color="warning" variant="dot" className="sm:hidden animate-pulse">
           Alpha Version
         </Chip>
 

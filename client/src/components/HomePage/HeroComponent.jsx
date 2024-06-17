@@ -3,12 +3,12 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const HeroSection = () => {
   return (
-    <div className="h-screen w-screen justify-center items-center flex-col flex  ">
+    <div className="h-screen w-screen justify-center items-center sm:w-3/4  sm:h-fit sm:py-24  flex-col flex  ">
       <div className="flex-1"></div>
-      <div className="flex-1 flex-col flex items-center gap-4">
-        <h1 className="text-9xl text-white font-bold">AiJobSaga</h1>
+      <div className="flex-1 flex-col flex items-center gap-4 ">
+        <h1 className="text-9xl text-white font-bold sm:text-6xl">AiJobSaga</h1>
 
-        <p className="text-lg text-gray-200 mt-4 tracking-wider">
+        <p className="text-lg text-gray-200 mt-4 tracking-wider sm:text-sm sm:w-fit sm:text-wrap ">
           Craft personalized applications & gain AI-powered insights to land
           your dream job.
         </p>
@@ -20,7 +20,7 @@ const HeroSection = () => {
         </Link>
       </div>
 
-      <div className="mb-10 flex-1 flex flex-col text-center gap-4 justify-end  items-center w-full">
+      <div className="mb-10 flex-1 flex flex-col text-center gap-4 justify-end  items-center w-full sm:mt-24">
         <p className="text-white opacity-80 text-xl">scroll down</p>
         <IoIosArrowDown className="text-white text-3xl animate-bounce" />
       </div>

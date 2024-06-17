@@ -45,7 +45,7 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-2/3 bg-white shadow-md rounded-lg p-8">
+      <div className="w-2/3 bg-white shadow-md rounded-lg p-8 sm:w-full">
         <div className="flex items-center justify-center mb-6">
           <div className="h-12 w-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-500 text-xl font-semibold">
             <Avatar src={`${user.githubProfile}.png`} />

@@ -36,13 +36,13 @@ const Workspace = () => {
   };
 
   return (
-    <div className="flex flex-row gap-8">
+    <div className="flex flex-row gap-8 sm:flex-col-reverse">
       {/* Left Column - Job Description Section */}
-      <div className="w-1/2 flex-1">
+      <div className="w-1/2 flex-1 sm:w-full">
         <JobDescriptionSection GenerateContent={handleGenerateContent} />
       </div>
       {showContent ? (
-        <div className=" w-1/2">
+        <div className=" w-1/2 sm:w-full">
           <ContentSection
             content={content}
             fitPercentage={content.fitPercentage}
@@ -53,16 +53,6 @@ const Workspace = () => {
           />
         </div>
       ) : null}
-      {/* Right Column - Content Section */}
-
-      {/* {showContent && (
-        <div className=" w-1/3">
-          <ContentSection
-            jobDescription={jobDescription}
-            generateChecked={generateChecked}
-          />
-        </div>
-      )} */}
     </div>
   );
 };

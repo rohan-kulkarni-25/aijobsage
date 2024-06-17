@@ -3,9 +3,9 @@ import { RiFileCopyLine, RiRocketLine } from "react-icons/ri";
 
 const Features = () => {
   return (
-    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8 sm:rounded-md sm:py-8">
       <h2 className="text-center my-16 text-5xl font-medium"> what we do ?</h2>
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-8 sm:grid-cols-1">
         {/* Feature 1: Personalized Messages */}
         <div className="bg-indigo-50 rounded-lg shadow-md p-6 flex flex-col items-center space-y-4">
           <RiFileCopyLine size={48} className="text-indigo-500" />
