@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { RiFileCopyLine, RiRocketLine } from "react-icons/ri"; // Icons
 import HeroComponent from "../components/HomePage/HeroComponent";
 import Features from "../components/HomePage/Features";
+import ProductHuntComponent from "../components/ProductHuntComponent";
 
 const HomePage = () => {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-violet-600  min-h-screen overy sm:px-8 sm:flex sm:flex-col sm:justify-center sm:items-center">
       {/* Hero Section */}
+      <ProductHuntComponent />
       <HeroComponent />
       {/* Features Section */}
       <Features />
